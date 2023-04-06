@@ -1,0 +1,22 @@
+.tableHistory {
+  margin: 30px auto;
+  max-width: 70%;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.199);
+}
+.table {
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.199);
+}
+th {
+  font-size: large;
+}
+th:hover::after {
+  content: " ⇅";
+}
+th:hover {
+  background-color: var(--bs-table-active-bg);
+  cursor: pointer;
+  overflow: hidden;
+}
