@@ -17,6 +17,7 @@ function App() {
       .get("https://www.cbr-xml-daily.ru/daily_json.js")
       .then((res) => {
         setRates(Object.values(res.data.Valute));
+        console.log(res.data);
       })
       .catch((err) => {
         console.warn(err);
@@ -37,7 +38,7 @@ function App() {
     <div className="App">
       <header>
         <h2>Конвертер валют</h2>
-        <Box component="form" className="currency card" onSubmit={addToTable}>
+        <Box component="form" className="currency" onSubmit={addToTable}>
           <CurrencyBlock rates={rates} isLoading={isLoading} />
           <Button
             variant="contained"

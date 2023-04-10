@@ -2,10 +2,11 @@
   text-align: center;
 }
 
-select {
-  width: 300px;
-  color: black;
+:root select {
+  width: 90%;
+  padding: auto;
 }
+
 header {
   display: flex;
   flex-direction: column;
@@ -17,9 +18,7 @@ h2 {
   font-weight: bold;
   font-size: xx-large;
 }
-.form-control {
-  text-align: center;
-}
+
 .currency {
   padding: 15px;
   gap: 10px;

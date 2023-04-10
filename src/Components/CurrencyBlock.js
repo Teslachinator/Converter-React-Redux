@@ -7,14 +7,7 @@ import {
   setSourceCurrencyValue,
   setTargetCurrencyValue,
 } from "../store/converterSlice";
-import {
-  Box,
-  Container,
-  Input,
-  InputLabel,
-  NativeSelect,
-  Select,
-} from "@mui/material";
+import { Box, Input, TextField } from "@mui/material";
 
 const CurrencyBlock = ({ rates, isLoading }) => {
   const dispatch = useDispatch();
@@ -34,7 +27,7 @@ const CurrencyBlock = ({ rates, isLoading }) => {
   };
 
   return (
-    <Box m={2} sx={{ gap: 2 }}>
+    <Box p={5} sx={{ gap: 2 }}>
       <label>
         Введите сумму:
         <Input
@@ -50,9 +43,13 @@ const CurrencyBlock = ({ rates, isLoading }) => {
       </label>
 
       <label>Исходная валюта</label>
-      <NativeSelect
-        // sx={{ pl: 2, backgroundColor:  }}
+      <TextField
+        select
+        variant="outlined"
         required
+        SelectProps={{
+          native: true,
+        }}
         onChange={(e) => handleSourceCurrencyChange(e)}
         className="sourceCurrency form-select "
         defaultValue={sourceCurrency.value}
@@ -73,16 +70,23 @@ const CurrencyBlock = ({ rates, isLoading }) => {
             ))}
           </>
         )}
-      </NativeSelect>
+      </TextField>
 
       <label>Целевая валюта</label>
-      <NativeSelect
+      <TextField
+        select
+        variant="outlined"
         required
+        SelectProps={{
+          native: true,
+        }}
         className="targetCurrency form-select"
         value={targetCurrency}
         onChange={handleTargetCurrencyChange}
       >
-        <option value="">Выберите валюту</option>
+        <option style={{ padding: 5 }} value="">
+          Выберите валюту
+        </option>
         {isLoading ? (
           <option>Загрузка...</option>
         ) : (
@@ -97,7 +101,7 @@ const CurrencyBlock = ({ rates, isLoading }) => {
             ))}
           </>
         )}
-      </NativeSelect>
+      </TextField>
     </Box>
   );
 };

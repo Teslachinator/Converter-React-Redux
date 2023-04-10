@@ -9,7 +9,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TableSortLabel,
 } from "@mui/material";
 
 const TableHistory = () => {
@@ -17,7 +16,6 @@ const TableHistory = () => {
   const [direction, setDirection] = useState(true);
   const dispatch = useDispatch();
   const copyData = convert.concat();
-
   const sortTable = (e) => {
     if (direction) {
       copyData.sort((a, b) => {
@@ -35,9 +33,9 @@ const TableHistory = () => {
   };
 
   return (
-    <section className="tableHistory table-responsive">
-      <TableContainer className="">
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <section className="tableHistory">
+      <TableContainer>
+        <Table>
           <TableHead>
             <TableRow>
               <TableCell
@@ -79,10 +77,7 @@ const TableHistory = () => {
           </TableHead>
           <TableBody>
             {convert.map((table, index) => (
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                key={index}
-              >
+              <TableRow key={index}>
                 <TableCell>{table.sourceCurrencyValue}</TableCell>
                 <TableCell>{table.targetCurrencyValue}</TableCell>
                 <TableCell>{table.currencySum}</TableCell>
@@ -92,18 +87,6 @@ const TableHistory = () => {
             ))}
           </TableBody>
         </Table>
-
-        {/* <tbody>
-          {convert.map((table, index) => (
-            <tr key={index}>
-              <td>{table.sourceCurrencyValue}</td>
-              <td>{table.targetCurrencyValue}</td>
-              <td>{table.currencySum}</td>
-              <td>{table.convertedSum}</td>
-              <td>{table.dateConverted}</td>
-            </tr>
-          ))}
-        </tbody> */}
       </TableContainer>
     </section>
   );
