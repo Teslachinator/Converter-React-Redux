@@ -7,14 +7,13 @@ import {
   setSourceCurrencyValue,
   setTargetCurrencyValue,
 } from "../store/converterSlice";
-import { Box, Input, TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 
 const CurrencyBlock = ({ rates, isLoading }) => {
   const dispatch = useDispatch();
   const { currencySum, sourceCurrency, targetCurrency } = useSelector(
     (state) => state.converter
   );
-
   const handleSourceCurrencyChange = () => {
     const option = document.querySelector(".sourceCurrency option:checked");
     dispatch(setSourceCurrency(option.value));
@@ -27,20 +26,19 @@ const CurrencyBlock = ({ rates, isLoading }) => {
   };
 
   return (
-    <Box p={5} sx={{ gap: 2 }}>
-      <label>
-        Введите сумму:
-        <Input
-          sx={{ ml: 2 }}
-          required
-          className="form-control"
-          type="number"
-          value={currencySum}
-          onChange={(e) => {
-            dispatch(setCurrencySum(e.target.value));
-          }}
-        />
-      </label>
+    <Box p={2} sx={{ gap: 2 }}>
+      <label>Введите сумму: </label>
+      <TextField
+        pl={2}
+        variant="outlined"
+        required
+        className="control"
+        type="number"
+        value={currencySum}
+        onChange={(e) => {
+          dispatch(setCurrencySum(e.target.value));
+        }}
+      />
 
       <label>Исходная валюта</label>
       <TextField
@@ -51,7 +49,7 @@ const CurrencyBlock = ({ rates, isLoading }) => {
           native: true,
         }}
         onChange={(e) => handleSourceCurrencyChange(e)}
-        className="sourceCurrency form-select "
+        className="sourceCurrency form-select"
         defaultValue={sourceCurrency.value}
       >
         <option value="">Выберите валюту</option>

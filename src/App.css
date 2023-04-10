@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+:root input {
+  width: 95%;
+}
 :root select {
   width: 90%;
   padding: auto;
