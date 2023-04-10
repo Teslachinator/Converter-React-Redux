@@ -17,6 +17,9 @@ h2 {
   font-weight: bold;
   font-size: xx-large;
 }
+.form-control {
+  text-align: center;
+}
 .currency {
   padding: 15px;
   gap: 10px;

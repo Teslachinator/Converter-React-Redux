@@ -5,6 +5,7 @@ import CurrencyBlock from "./Components/CurrencyBlock";
 import { useDispatch } from "react-redux";
 import TableHistory from "./Components/TableHistory";
 import { addTableState } from "./store/converterSlice";
+import { Box, Button } from "@mui/material";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,14 +37,16 @@ function App() {
     <div className="App">
       <header>
         <h2>Конвертер валют</h2>
-        <form className="currency card" onSubmit={addToTable}>
+        <Box component="form" className="currency card" onSubmit={addToTable}>
           <CurrencyBlock rates={rates} isLoading={isLoading} />
-          <input
+          <Button
+            variant="contained"
             type="submit"
             className="btn btn-outline-secondary"
-            value="Конвертировать"
-          />
-        </form>
+          >
+            Конвертировать
+          </Button>
+        </Box>
       </header>
       <TableHistory />
     </div>

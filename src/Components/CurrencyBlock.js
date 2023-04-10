@@ -7,6 +7,14 @@ import {
   setSourceCurrencyValue,
   setTargetCurrencyValue,
 } from "../store/converterSlice";
+import {
+  Box,
+  Container,
+  Input,
+  InputLabel,
+  NativeSelect,
+  Select,
+} from "@mui/material";
 
 const CurrencyBlock = ({ rates, isLoading }) => {
   const dispatch = useDispatch();
@@ -26,14 +34,14 @@ const CurrencyBlock = ({ rates, isLoading }) => {
   };
 
   return (
-    <div>
+    <Box m={2} sx={{ gap: 2 }}>
       <label>
         Введите сумму:
-        <input
+        <Input
+          sx={{ ml: 2 }}
           required
           className="form-control"
           type="number"
-          aria-label="Amount (to the nearest dollar)"
           value={currencySum}
           onChange={(e) => {
             dispatch(setCurrencySum(e.target.value));
@@ -41,59 +49,56 @@ const CurrencyBlock = ({ rates, isLoading }) => {
         />
       </label>
 
-      <label>
-        Исходная валюта
-        <select
-          required
-          onChange={(e) => handleSourceCurrencyChange(e)}
-          className="sourceCurrency form-select "
-          aria-label="Default select example"
-          defaultValue={sourceCurrency.value}
-        >
-          <option value="">Выберите валюту</option>
+      <label>Исходная валюта</label>
+      <NativeSelect
+        // sx={{ pl: 2, backgroundColor:  }}
+        required
+        onChange={(e) => handleSourceCurrencyChange(e)}
+        className="sourceCurrency form-select "
+        defaultValue={sourceCurrency.value}
+      >
+        <option value="">Выберите валюту</option>
 
-          {isLoading ? (
-            <option>Загрузка...</option>
-          ) : (
-            <>
-              <option key={"RUB"} value={1}>
-                RUB - Российский рубль
+        {isLoading ? (
+          <option>Загрузка...</option>
+        ) : (
+          <>
+            <option key={"RUB"} value={1}>
+              RUB - Российский рубль
+            </option>
+            {rates.map((currency) => (
+              <option value={currency.Value} key={currency.NumCode}>
+                {currency.CharCode} - {currency.Name}
               </option>
-              {rates.map((currency) => (
-                <option value={currency.Value} key={currency.NumCode}>
-                  {currency.CharCode} - {currency.Name}
-                </option>
-              ))}
-            </>
-          )}
-        </select>
-      </label>
-      <label>
-        Целевая валюта
-        <select
-          required
-          className="targetCurrency form-select"
-          value={targetCurrency}
-          onChange={handleTargetCurrencyChange}
-        >
-          <option value="">Выберите валюту</option>
-          {isLoading ? (
-            <option>Загрузка...</option>
-          ) : (
-            <>
-              <option key={"RUB"} value={1}>
-                RUB - Российский рубль
+            ))}
+          </>
+        )}
+      </NativeSelect>
+
+      <label>Целевая валюта</label>
+      <NativeSelect
+        required
+        className="targetCurrency form-select"
+        value={targetCurrency}
+        onChange={handleTargetCurrencyChange}
+      >
+        <option value="">Выберите валюту</option>
+        {isLoading ? (
+          <option>Загрузка...</option>
+        ) : (
+          <>
+            <option key={"RUB"} value={1}>
+              RUB - Российский рубль
+            </option>
+            {rates.map((currency) => (
+              <option value={currency.Value} key={currency.NumCode}>
+                {currency.CharCode} - {currency.Name}
               </option>
-              {rates.map((currency) => (
-                <option value={currency.Value} key={currency.NumCode}>
-                  {currency.CharCode} - {currency.Name}
-                </option>
-              ))}
-            </>
-          )}
-        </select>
-      </label>
-    </div>
+            ))}
+          </>
+        )}
+      </NativeSelect>
+    </Box>
   );
 };
 
